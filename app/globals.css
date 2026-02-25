@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fefcfb;
+  --foreground: #1f1b18;
+  --muted: #6b5b52;
+  --accent: #e07c4c;
+  --accent-soft: #f5d5c8;
+  --sidebar-bg: #faf6f3;
+  --sidebar-border: #ebe4de;
+  --sidebar-hover: #f0e9e3;
+  --sidebar-active: #ebe4de;
+  --card-bg: #ffffff;
+  --card-border: #ebe4de;
+  --timeline-dot: #e07c4c;
+  --gradient-start: #fefcfb;
+  --gradient-end: #fdf2ed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: system-ui, -apple-system, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a1614;
+    --foreground: #f5f0ec;
+    --muted: #a8988c;
+    --accent: #f0a078;
+    --accent-soft: #3d2e28;
+    --sidebar-bg: #221d1a;
+    --sidebar-border: #352d28;
+    --sidebar-hover: #2d2622;
+    --sidebar-active: #352d28;
+    --card-bg: #221d1a;
+    --card-border: #352d28;
+    --timeline-dot: #f0a078;
+    --gradient-start: #1a1614;
+    --gradient-end: #231c18;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Subtle gradient + dot pattern on main content area */
+.portfolio-main {
+  position: relative;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--gradient-end) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, var(--accent-soft) 0%, transparent 35%),
+    var(--background);
+  background-attachment: fixed;
+}
+
+.portfolio-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--accent) 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.portfolio-main > * {
+  position: relative;
+  z-index: 1;
+}
+
+:root {
+  --sidebar-width: 320px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --sidebar-width: 280px;
+  }
+}
+
+/* Soft focus for page content */
+.page-content {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
